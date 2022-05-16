@@ -1,0 +1,19 @@
+.list-label {
+  position: absolute;
+  margin-top: -37px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 5px;
+  background: white;
+  color: rgb(108, 108, 238);
+}
+.table-completed {
+    color: grey;
+  td {
+    text-decoration: line-through;
+  }
+  button {
+      color: lightgray;
+  }
+  
+}

@@ -1,0 +1,20 @@
+<div class="table-frame">
+    <table>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        <tr>
+            <td><input type="text" [(ngModel)]="todoModel.title"></td>
+            <td><input  type="text" [(ngModel)]="todoModel.description"></td>
+            <td><button class="btn-add" (click)="onAdd()">Add</button></td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,5 @@
+﻿<div class="app ">
+    <todo-form (todoAdded)="handleTodoCreated($event)"></todo-form>
+    <todo-list (clicked)="handleTodoAction($event)" [todos]="activeTodos | async"></todo-list>
+    <todo-list (clicked)="handleTodoAction($event)" [isActive]="false" [todos]="completeTodos | async"></todo-list>
+</div>

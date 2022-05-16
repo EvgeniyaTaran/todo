@@ -1,0 +1,54 @@
+﻿<div class="table-frame">
+  <div class="list-label">{{getTableName()}}</div>
+  <table [ngClass]="isActive ? 'table-active': 'table-completed'">
+    <tr>
+      <th>
+        Id
+    </th>
+      <th>
+          Title
+      </th>
+      <th>
+          Description
+      </th>
+      <th>
+          Actions
+      </th>
+  </tr>
+    <ng-container *ngFor="let todo of todos">
+        <tr>
+          <td>
+            {{todo?.id}}
+
+          </td>
+          <td>
+            <ng-container *ngIf="activeTodo.id !== todo.id; else editTodoTitle">{{todo?.title}}</ng-container>
+            <ng-template #editTodoTitle>
+              <input type="text" [(ngModel)]="activeTodo.title"/>
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="activeTodo.id !== todo.id; else editTodoDescription">{{todo?.description}}</ng-container>
+            <ng-template #editTodoDescription>
+              <input type="text" [(ngModel)]="activeTodo.description"/>
+            </ng-template>
+            </td>
+          <td>
+            <ng-container *ngIf="todo?.state === TodoState.Completed; else activeList">
+              <button (click)="onTodo(todo)" class="btn-todo">TODO</button>
+            </ng-container>
+            <ng-template #activeList>
+              <ng-container *ngIf="activeTodo.id !== todo.id">
+                <button (click)="onEdit(todo)" class="btn-edit">Edit</button>
+                <button (click)="onDelete(todo)" class="btn-delete">Delete</button>
+                <button (click)="onComplete(todo)" class="btn-complete">Complete</button>
+              </ng-container>
+              <button *ngIf="activeTodo.id === todo.id" (click)="onSave(todo)" class="btn-edit">Save</button>
+            </ng-template>
+          </td>
+          
+        </tr>
+    </ng-container>
+  </table>
+</div>
+

@@ -1,0 +1,15 @@
+﻿<tr>
+  <td>{{todo?.id}}</td>
+  <td>{{todo?.title}}</td>
+  <td>{{todo?.description}}</td>
+  <td>
+    <ng-container *ngIf="todo?.state === TodoState.Active; else completedList">
+      <button (click)="onEdit()" class="btn-edit">Edit</button>
+      <button (click)="onDelete()" class="btn-delete">Delete</button>
+      <button (click)="onComplete()" class="btn-complete">Complete</button>
+    </ng-container>
+    <ng-template #completedList>
+      <button (click)="onTodo()" class="btn-todo">TODO</button>
+    </ng-template>
+  </td>
+</tr>
