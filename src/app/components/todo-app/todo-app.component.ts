@@ -1,12 +1,10 @@
 ﻿import {Component} from "@angular/core";
-import { Todo } from "src/app/models/todo";
+import { Todo } from "../../models/todo";
 import {Store} from '@ngrx/store';
-import { AppState } from "src/app/store";
-import { TodoStatus } from "src/app/models/todo-status";
-import {TodoAction} from "src/app/store/actions/todos.action";
-import * as fromStore from "src/app/store"
+import { AppState } from "../../store";
+import * as fromStore from "../../store"
 import { Observable } from "rxjs";
-import { TodoActionEventData } from "src/app/models/todo-action-event-data";
+import { TodoActionEventData } from "../../models/todo-action-event-data";
 
 @Component({
   selector: "todo-app",

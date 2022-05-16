@@ -1,7 +1,7 @@
 ﻿import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ActionType} from 'src/app/models/action-type';
-import { Todo } from 'src/app/models/todo';
-import { TodoStatus } from "src/app/models/todo-status";
+import {ActionType} from '../../models/action-type';
+import { Todo } from '../../models/todo';
+import { TodoStatus } from "../../models/todo-status";
 
 
 @Component({

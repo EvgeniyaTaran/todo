@@ -1,7 +1,7 @@
 import * as todoActions from '../actions/todos.action';
 import { InitialState } from "@ngrx/store/src/models";
-import { Todo } from "src/app/models/todo";
-import { TodoStatus } from 'src/app/models/todo-status';
+import { Todo } from "../../models/todo";
+import { TodoStatus } from '../../models/todo-status';
 
 export interface TodoState {
     data: Todo[]

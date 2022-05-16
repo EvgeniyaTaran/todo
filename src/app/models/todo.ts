@@ -1,5 +1,4 @@
-﻿import { Action } from './action';
-import { Guid } from 'guid-typescript';
+﻿import { Guid } from 'guid-typescript';
 import { TodoStatus } from './todo-status';
 
 export class Todo {

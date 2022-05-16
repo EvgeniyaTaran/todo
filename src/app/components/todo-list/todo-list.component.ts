@@ -1,10 +1,10 @@
-﻿import {ActionType} from 'src/app/models/action-type'
+﻿import {ActionType} from '../../models/action-type'
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { Todo } from 'src/app/models/todo';
-import { TodoStatus } from 'src/app/models/todo-status';
-import { TodoActionEventData } from 'src/app/models/todo-action-event-data';
-import { CompleteTodo, EditTodo, RemoveTodo, RestoreTodo } from 'src/app/store';
-import { TodoEditData } from 'src/app/models/todo-edit-data';
+import { Todo } from '../../models/todo';
+import { TodoStatus } from '../../models/todo-status';
+import { TodoActionEventData } from '../../models/todo-action-event-data';
+import { CompleteTodo, EditTodo, RemoveTodo, RestoreTodo } from '../../store';
+import { TodoEditData } from '../../models/todo-edit-data';
 
 @Component({
   selector: "todo-list",

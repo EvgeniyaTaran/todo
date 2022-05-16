@@ -1,6 +1,6 @@
 import { ActionReducerMap, createFeatureSelector, createSelector} from "@ngrx/store";
-import { Todo } from "src/app/models/todo";
-import { TodoStatus } from "src/app/models/todo-status";
+import { Todo } from "../../models/todo";
+import { TodoStatus } from "../../models/todo-status";
 
 import * as todoReducer from './todos.reducer';
 

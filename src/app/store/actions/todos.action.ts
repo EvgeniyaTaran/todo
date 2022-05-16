@@ -1,6 +1,6 @@
 import {Action} from '@ngrx/store';
-import { Todo } from 'src/app/models/todo';
-import { TodoEditData } from 'src/app/models/todo-edit-data';
+import { Todo } from '../../models/todo';
+import { TodoEditData } from '../../models/todo-edit-data';
 
 export const CREATE_TODO = '[TODOS] Create todo';
 export const REMOVE_TODO = '[TODOS] Delete todo';

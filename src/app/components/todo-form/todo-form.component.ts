@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Output, ViewEncapsulation } from "@angular/core";
-import { ActionType } from "src/app/models/action-type";
-import { Todo } from "src/app/models/todo";
-import { TodoStatus } from "src/app/models/todo-status";
+import { Todo } from "../../models/todo";
 
 @Component({
     selector: "todo-form",
