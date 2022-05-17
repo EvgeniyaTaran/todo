@@ -6,6 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "mock-server": "node ./mocks/server.js",
+    "ng-mock-app": "ng serve --proxy-config proxy-mock.conf.json --configuration=development --port=4200",
+    "start-mocks-app": "concurrently --kill-others \"npm run mock-server\" \"npm run ng-mock-app\"",
     "test": "ng test"
   },
   "private": true,
@@ -21,6 +24,8 @@
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
+    "guid-typescript": "^1.0.9",
+    "json-server": "^0.17.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

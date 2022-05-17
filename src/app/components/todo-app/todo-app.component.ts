@@ -12,8 +12,13 @@ import { TodoActionEventData } from "../../models/todo-action-event-data";
   styleUrls: ['./todo-app.component.scss'],
 })
 export class TodoAppComponent {
+  // #5 - can add $ => https://angular.io/guide/rx-library#naming-conventions-for-observables
   public activeTodos: Observable<Todo[]> | null;
   public completeTodos: Observable<Todo[]> | null;
+
+  // #6 - the above construction we can use in such way. It's not mandatory init Observables with ngOnInit
+  // activeTodos$: Observable<Todo[]> = this.store.select(fromStore.getActiveTodos);
+  // completeTodos$: Observable<Todo[]> = this.store.select(fromStore.getCompleteTodos);
 
   constructor(private store: Store<AppState>) {  }
 
