@@ -15,7 +15,7 @@
           Actions
       </th>
   </tr>
-    <ng-container *ngFor="let todo of todos">
+    <ng-container *ngFor="let todo of todos; trackBy: trackFunction">
         <tr>
           <td>
             {{todo?.id}}

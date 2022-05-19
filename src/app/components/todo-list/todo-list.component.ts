@@ -13,16 +13,8 @@ import { TodoEditData } from '../../models/todo-edit-data';
   encapsulation: ViewEncapsulation.None
 })
 export class TodoListComponent {
-  private _todos: Todo[] | null;
-
   @Input()
-  public set todos(value: Todo[] | null) {
-    this._todos = value;
-  }
-
-  public get todos():Todo[] |null {
-    return this._todos;
-  }
+  public todos: Todo[] | null
 
   @Input()
   public isActive: boolean = true;
@@ -69,5 +61,9 @@ export class TodoListComponent {
 
   public onTodo(todo: Todo) {
     this.clicked.emit({actionType: new RestoreTodo(todo)});
+  }
+
+  public trackFunction ( index: number, element: Todo ) {
+    return element ? element.id : null
   }
 }

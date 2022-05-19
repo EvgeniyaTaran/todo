@@ -12,14 +12,14 @@ import { TodoActionEventData } from "../../models/todo-action-event-data";
   styleUrls: ['./todo-app.component.scss'],
 })
 export class TodoAppComponent {
-  public activeTodos: Observable<Todo[]> | null;
-  public completeTodos: Observable<Todo[]> | null;
+  public activeTodos$: Observable<Todo[]> | null;
+  public completeTodos$: Observable<Todo[]> | null;
 
   constructor(private store: Store<AppState>) {  }
 
   ngOnInit() {
-    this.activeTodos = this.store.select(fromStore.getActiveTodos);
-    this.completeTodos = this.store.select(fromStore.getCompleteTodos);
+    this.activeTodos$ = this.store.select(fromStore.getActiveTodos);
+    this.completeTodos$ = this.store.select(fromStore.getCompleteTodos);
   }
 
   handleTodoCreated(todo: Todo) {
