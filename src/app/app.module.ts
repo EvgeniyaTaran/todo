@@ -11,13 +11,16 @@ import { MetaReducer, StoreModule } from '@ngrx/store';
 import { reducers } from './store';
 import { storeFreeze} from 'ngrx-store-freeze';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { logger } from './store/reducers/todos.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 const environment = {
   development: true,
   production: false,
 };
 
-export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze] : [];
+export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze, logger] : [];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +32,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreModule.forFeature('todos', reducers),
     environment.development ? StoreDevtoolsModule.instrument() : [],
