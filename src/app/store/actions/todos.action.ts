@@ -8,6 +8,7 @@ export const COMPLETE_TODO = '[TODOS] Complete todo';
 export const RESTORE_TODO = '[TODOS] Restore todo';
 export const EDIT_TODO = '[TODOS] Edit todo';
 
+// #9 - please use official guide for NGRX => https://ngrx.io/guide/store (work with actions)
 export class CreateTodo implements Action {
     readonly type = CREATE_TODO;
     constructor(public payload: Todo) {}
