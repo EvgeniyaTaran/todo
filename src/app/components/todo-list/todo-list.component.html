@@ -17,7 +17,7 @@
       </th>
   </tr>
     <!-- #8 - everything is ok here, but please read (later, not now) the article https://dltlabs.medium.com/when-why-and-how-to-use-trackby-9a65eb7a5593#:~:text=This%20can%20have%20a%20major,identifier%20for%20each%20iterable%20element. -->
-    <ng-container *ngFor="let todo of todos">
+    <ng-container *ngFor="let todo of todos; trackBy: trackFunction">
         <tr>
           <td>
             {{todo?.id}}
