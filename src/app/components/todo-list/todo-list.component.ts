@@ -25,7 +25,7 @@ export class TodoListComponent {
   public getTableName() {
     return this.isActive? "List Todo" : "Done";
   }
-  /////
+  
   TodoState = TodoStatus;
   ActionType = ActionType;
 

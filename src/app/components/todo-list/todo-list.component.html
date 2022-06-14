@@ -1,5 +1,5 @@
 ﻿<div class="table-frame">
-  <div class="list-label">{{getTableName()}}</div>
+  <div class="list-label">{{isActive? "List Todo" : "Done"}}</div>
   <table [ngClass]="isActive ? 'table-active': 'table-completed'">
     <tr>
       <th>
