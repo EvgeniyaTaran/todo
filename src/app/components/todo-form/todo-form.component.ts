@@ -14,8 +14,8 @@ import { Todo } from "../../models/todo";
       description: ''};
 
     @Output()
-    public todoAdded = new EventEmitter<Todo>();
-    public onAdd() {
+    todoAdded = new EventEmitter<Todo>();
+    onAdd() {
       let todo = new Todo(this.todoModel.title, this.todoModel.description)
       this.todoAdded.emit(todo);
       this.todoModel.title = '';

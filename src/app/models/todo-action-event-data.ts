@@ -1,6 +1,6 @@
-import { TodoAction } from "../store";
+import { TodoActionUnion } from "../store";
 import { Todo } from "./todo";
 
-export interface TodoActionEventData {
-    actionType: TodoAction,
+export interface ActionEventData {
+    actionType: typeof TodoActionUnion,
 }

@@ -1,10 +1,10 @@
 ﻿import {ActionType} from '../../models/action-type'
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { Todo } from '../../models/todo';
-import { TodoStatus } from '../../models/todo-status';
-import { TodoActionEventData } from '../../models/todo-action-event-data';
+import { Status } from '../../models/todo-status';
+import { ActionEventData } from '../../models/todo-action-event-data';
 import { CompleteTodo, EditTodo, RemoveTodo, RestoreTodo } from '../../store';
-import { TodoEditData } from '../../models/todo-edit-data';
+import { EditData } from '../../models/todo-edit-data';
 
 @Component({
   selector: "todo-list",
@@ -14,56 +14,57 @@ import { TodoEditData } from '../../models/todo-edit-data';
 })
 export class TodoListComponent {
   @Input()
-  public todos: Todo[] | null
+  todos: Todo[] | null
 
   @Input()
-  public isActive: boolean = true;
+  isActive: boolean = true;
   
   constructor() {
   }
 
-  public getTableName() {
+  getTableName() {
     return this.isActive? "List Todo" : "Done";
   }
   
-  TodoState = TodoStatus;
+  TodoState = Status;
   ActionType = ActionType;
 
-  public activeTodo: TodoEditData = {
+  activeTodo: EditData = {
     id: '',
     title: '',
     description: ''
   }
 
   @Output()
-  public clicked = new EventEmitter<TodoActionEventData>();
+  clicked = new EventEmitter<ActionEventData>();
 
-  public activeTodoId: string | null;
+  activeTodoId: string | null;
 
-  public onEdit(todo: Todo) {
+  onEdit(todo: Todo) {
     this.activeTodo.title = todo.title;
     this.activeTodo.description = todo.description;
     this.activeTodo.id = todo.id;
   }
 
-  public onSave(todo: Todo) {
-    this.clicked.emit({actionType: new EditTodo({...this.activeTodo})});
+  onSave(todo: Todo) {
+    const payload = {...this.activeTodo};
+    this.clicked.emit({actionType: EditTodo({payload})});
     this.activeTodo.id = '';
   }
 
-  public onDelete(todo: Todo) {
-    this.clicked.emit({actionType: new RemoveTodo(todo)});
+  onDelete(todo: Todo) {
+    this.clicked.emit({actionType: RemoveTodo({payload: todo})});
   }
 
-  public onComplete(todo: Todo) {
-    this.clicked.emit({actionType: new CompleteTodo(todo)});
+  onComplete(todo: Todo) {
+    this.clicked.emit({actionType: CompleteTodo({payload: todo})});
   }
 
-  public onTodo(todo: Todo) {
-    this.clicked.emit({actionType: new RestoreTodo(todo)});
+  onTodo(todo: Todo) {
+    this.clicked.emit({actionType: RestoreTodo({payload: todo})});
   }
 
-  public trackFunction ( index: number, element: Todo ) {
+  trackFunction ( index: number, element: Todo ) {
     return element ? element.id : null
   }
 }

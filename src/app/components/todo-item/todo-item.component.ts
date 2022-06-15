@@ -1,7 +1,7 @@
 ﻿import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {ActionType} from '../../models/action-type';
 import { Todo } from '../../models/todo';
-import { TodoStatus } from "../../models/todo-status";
+import { Status } from "../../models/todo-status";
 
 
 @Component({
@@ -10,30 +10,30 @@ import { TodoStatus } from "../../models/todo-status";
   styleUrls: ['./todo-item.component.scss'],
 })
 export class TodoItemComponent {
-  TodoState = TodoStatus;
+  TodoState = Status;
   ActionType = ActionType;
   @Input()
-  public todo: Todo | undefined;
+  todo: Todo | undefined;
 
   @Output()
-  public clicked = new EventEmitter<ActionType>();
+  clicked = new EventEmitter<ActionType>();
 
   constructor() {
   }
 
-  public onEdit() {
+  onEdit() {
     this.clicked.emit(ActionType.EDIT);
   }
 
-  public onDelete() {
+  onDelete() {
     this.clicked.emit(ActionType.DELETE);
   }
 
-  public onComplete() {
+  onComplete() {
     this.clicked.emit(ActionType.COMPLETE);
   }
 
-  public onTodo() {
+  onTodo() {
     this.clicked.emit(ActionType.TODO);
   }
 }

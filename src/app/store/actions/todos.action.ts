@@ -1,37 +1,80 @@
-import {Action} from '@ngrx/store';
+import {Action, createAction, props} from '@ngrx/store';
 import { Todo } from '../../models/todo';
-import { TodoEditData } from '../../models/todo-edit-data';
+import { EditData } from '../../models/todo-edit-data';
 
-export const CREATE_TODO = '[TODOS] Create todo';
-export const REMOVE_TODO = '[TODOS] Delete todo';
-export const COMPLETE_TODO = '[TODOS] Complete todo';
-export const RESTORE_TODO = '[TODOS] Restore todo';
-export const EDIT_TODO = '[TODOS] Edit todo';
+const GET_ALL = '[TODOS] Get all todos';
+const GOT_ALL = '[API] Successfuly got all todos'; 
+const CREATE_TODO = '[TODOS] Create todo';
+const CREATED_TODO = '[API] Successfully created todo';
+const REMOVE_TODO = '[TODOS] Delete a todo';
+const REMOVED_TODO = '[API] Successfuly deleted a todo';
+const COMPLETE_TODO = '[TODOS] Complete todo';
+const COMPLETED_TODO = '[API] Successfuly completed todo';
+const RESTORE_TODO = '[TODOS] Restore todo';
+const RESTORED_TODO = '[API] Successfuly restored todo';
+const EDIT_TODO = '[TODOS] Edit todo';
+const EDITED_TODO = '[API] Successfuly edited todo';
 
 // #9 - please use official guide for NGRX => https://ngrx.io/guide/store (work with actions)
-export class CreateTodo implements Action {
-    readonly type = CREATE_TODO;
-    constructor(public payload: Todo) {}
-}
+// export class CreateTodo implements Action {
+//     readonly type = CREATE_TODO;
+//     constructor(payload: Todo) {}
+// }
+export const GetAllTodos = createAction(
+    GET_ALL,
+);
 
-export class RemoveTodo implements Action {
-    readonly type = REMOVE_TODO;
-    constructor(public payload: Todo) {}
-}
+export const GotAllTodos = createAction(
+    GOT_ALL,
+    props<{payload: Todo[]}>()
+);
 
-export class CompleteTodo implements Action {
-    readonly type = COMPLETE_TODO;
-    constructor(public payload: Todo) {}
-}
+export const CreateTodo = createAction(
+    CREATE_TODO,
+    props<{payload: Todo}>()
+);
 
-export class RestoreTodo implements Action {
-    readonly type = RESTORE_TODO;
-    constructor(public payload: Todo) {}
-}
+export const CreatedTodo = createAction(
+    CREATED_TODO,
+    props<{payload: Todo}>()
+);
 
-export class EditTodo implements Action {
-    readonly type = EDIT_TODO;
-    constructor(public payload: TodoEditData) {}
-}
+export const RemoveTodo = createAction(
+    REMOVE_TODO,
+    props<{payload: Todo}>()
+);
 
-export type TodoAction = CreateTodo | RemoveTodo | CompleteTodo | RestoreTodo | EditTodo;
+export const RemovedTodo = createAction(
+    REMOVED_TODO,
+    props<{payload: Todo}>()
+);
+
+export const CompleteTodo = createAction(
+    COMPLETE_TODO,
+    props<{payload: Todo}>()
+);
+
+export const CompletedTodo = createAction(
+    COMPLETED_TODO,
+    props<{payload: Todo}>()
+);
+
+export const RestoreTodo = createAction(
+    RESTORE_TODO,
+    props<{payload: Todo}>()
+);
+
+export const RestoredTodo = createAction(
+    RESTORED_TODO,
+    props<{payload: Todo}>()
+);
+
+export const EditTodo = createAction(
+    EDIT_TODO,
+    props<{payload: EditData}>()
+);
+
+export const EditedTodo = createAction(
+    EDITED_TODO,
+    props<{payload: Todo}>()
+);

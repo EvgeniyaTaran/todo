@@ -1,10 +1,11 @@
 ﻿import {Component} from "@angular/core";
 import { Todo } from "../../models/todo";
 import {Store} from '@ngrx/store';
-import { AppState } from "../../store";
+import { AppState, CreateTodo, GetAllTodos } from "../../store";
 import * as fromStore from "../../store"
 import { Observable } from "rxjs";
-import { TodoActionEventData } from "../../models/todo-action-event-data";
+import { ActionEventData } from "../../models/todo-action-event-data";
+import { tap } from 'rxjs/operators'
 
 @Component({
   selector: "todo-app",
@@ -13,25 +14,25 @@ import { TodoActionEventData } from "../../models/todo-action-event-data";
 })
 export class TodoAppComponent {
   // #5 - can add $ => https://angular.io/guide/rx-library#naming-conventions-for-observables
-  public activeTodos$: Observable<Todo[]> | null;
-  public completeTodos$: Observable<Todo[]> | null;
+  activeTodos$: Observable<Todo[]> = this.store.select(fromStore.getActiveTodos);
+  completeTodos$: Observable<Todo[]> = this.store.select(fromStore.getCompleteTodos);
 
   // #6 - the above construction we can use in such way. It's not mandatory init Observables with ngOnInit
   // activeTodos$: Observable<Todo[]> = this.store.select(fromStore.getActiveTodos);
   // completeTodos$: Observable<Todo[]> = this.store.select(fromStore.getCompleteTodos);
 
+  ngOnInit() {
+    this.store.dispatch(GetAllTodos());
+  }
+
   constructor(private store: Store<AppState>) {  }
 
-  ngOnInit() {
-    this.activeTodos$ = this.store.select(fromStore.getActiveTodos);
-    this.completeTodos$ = this.store.select(fromStore.getCompleteTodos);
+
+  handleTodoCreated(payload: Todo) {
+      this.store.dispatch(CreateTodo({payload}));
   }
 
-  handleTodoCreated(todo: Todo) {
-      this.store.dispatch(new fromStore.CreateTodo(todo));
-  }
-
-  handleTodoAction(event: TodoActionEventData) {
+  handleTodoAction(event: ActionEventData) {
     this.store.dispatch(event.actionType);
   }
 }
