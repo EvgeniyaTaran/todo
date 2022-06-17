@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { EditData } from "../models/todo-edit-data";
 
 @Injectable()
+// #23 - https://angular.io/guide/singleton-services
 export class TodoService {
     constructor(private http: HttpClient) {}
 
@@ -21,7 +22,7 @@ export class TodoService {
     updateTodo(payload: Todo): Observable<Todo> {
         return this.http.put<Todo>(`${this.url}/todos/${payload.id}`, payload);
     }
-    
+
     removeTodo(payload: Todo): Observable<Todo> {
         return this.http.delete<Todo>(`${this.url}/todos/${payload.id}`);
     }

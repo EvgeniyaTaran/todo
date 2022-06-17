@@ -15,16 +15,20 @@ export const initialState: TodoState = {
     data: {}
 };
 
+// #17 - do we need this ?
 export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>({
     selectId: (todo: Todo) => todo.id,
     sortComparer: false,
   });
 
+// #18 - all the big business logic we can move to effects
 export const reducer = createReducer(
     initialState,
     on(GetAllTodos, (state, action) => ({...state})),
     on(GotAllTodos, (state, action) => {
         const todos =  action.payload as Todo[];
+
+        // #19 ---
         const data = todos.reduce((acc: {[id: string]: Todo}, todo: Todo) => {
             const typedTodo = Object.assign(new Todo(todo.title, todo.description), todo)
             return {
@@ -37,6 +41,7 @@ export const reducer = createReducer(
     on(CreateTodo, (state, action) => ({...state})),
     on(CreatedTodo, (state, action) => {
         const todo = action.payload;
+        // #20 ---
         const data = {
             ...state.data,
             [todo.id]: todo

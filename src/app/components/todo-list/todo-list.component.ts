@@ -9,23 +9,25 @@ import { EditData } from '../../models/todo-edit-data';
 @Component({
   selector: "todo-list",
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./todo-list.component.scss']
 })
+// #11 - ViewEncapsulation.None and https://angular.io/api/core/ChangeDetectionStrategy
+// https://blog.angular-university.io/onpush-change-detection-how-it-works/
+
 export class TodoListComponent {
   @Input()
   todos: Todo[] | null
 
   @Input()
   isActive: boolean = true;
-  
+
   constructor() {
   }
 
   getTableName() {
     return this.isActive? "List Todo" : "Done";
   }
-  
+
   TodoState = Status;
   ActionType = ActionType;
 

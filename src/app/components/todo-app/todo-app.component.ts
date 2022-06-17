@@ -14,6 +14,7 @@ import { tap } from 'rxjs/operators'
 })
 export class TodoAppComponent {
   // #5 - can add $ => https://angular.io/guide/rx-library#naming-conventions-for-observables
+  // #22 - what will be if we'll have 10 types ? Can we put here universal solutions ?
   activeTodos$: Observable<Todo[]> = this.store.select(fromStore.getActiveTodos);
   completeTodos$: Observable<Todo[]> = this.store.select(fromStore.getCompleteTodos);
 

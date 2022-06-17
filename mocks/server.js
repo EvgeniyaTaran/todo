@@ -19,11 +19,11 @@ server.use((req, res, next) => {
 const router = jsonServer.router(path.join(__dirname, 'db.json'));
 
 // Custom response wrapper
-router.render = (req, res) => {
-  res.jsonp({
-    data: res.locals.data
-  })
-}
+// router.render = (req, res) => {
+//   res.jsonp({
+//     data: res.locals.data
+//   })
+// }
 
 server.use(router);
 server.listen(3000, () => {
