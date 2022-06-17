@@ -10,3 +10,7 @@
 - Here you can find some rest calls - `src\app\app.component.ts`
 
 - Let's do CRUD operations through the server calls (through effects)
+
+# Second review
+- I've added new points from #10 - #24, please take a look
+- On my side app is workable with `npm run start-mocks-app`

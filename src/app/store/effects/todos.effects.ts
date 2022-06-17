@@ -19,16 +19,20 @@ export class Effects {
         private store: Store<TodoState>
       ) {}
 
-    createTodo$ = createEffect(() => 
+    createTodo$ = createEffect(() =>
     this.actions$.pipe(
         ofType(CreateTodo),
+        // #12 - switchMap also can be add also can call HTTP direct here (without service)
         mergeMap((action) => this.todoService.addTodo(action.payload).pipe(
-            map(todo => CreatedTodo({payload: todo})),
-            catchError(() => EMPTY)
+          // #13 - let's put all business logic here, and push to reducers only results
+          // also here we can create a MODEL
+          map(todo => CreatedTodo({payload: todo})),
+          // #14 - also can set as REDUX action
+          catchError(() => EMPTY)
         ))
     ));
 
-    removeTodo$ = createEffect(() => 
+    removeTodo$ = createEffect(() =>
     this.actions$.pipe(
         ofType(RemoveTodo),
         mergeMap((action) => this.todoService.removeTodo(action.payload).pipe(
@@ -37,17 +41,17 @@ export class Effects {
         ))
     ));
 
-    editTodo$ = createEffect(() => 
+    editTodo$ = createEffect(() =>
     this.actions$.pipe(
         ofType(EditTodo),
-        
+
         mergeMap((action) => this.todoService.editTodo(action.payload).pipe(
             map(todo => EditedTodo({payload: todo})),
             catchError(() => EMPTY)
         ))
     ));
 
-    completeTodo$ = createEffect(() => 
+    completeTodo$ = createEffect(() =>
     this.actions$.pipe(
         ofType(CompleteTodo),
         //concatLatestFrom(action => this.store.select(getTodo(action.payload.id))),
@@ -57,7 +61,7 @@ export class Effects {
         ))
     ));
 
-    restoreTodo$ = createEffect(() => 
+    restoreTodo$ = createEffect(() =>
     this.actions$.pipe(
         ofType(RestoreTodo),
         mergeMap((action) => this.todoService.updateTodo(action.payload).pipe(
@@ -66,7 +70,7 @@ export class Effects {
         ))
     ));
 
-    loadAllTodos$ = createEffect(() => 
+    loadAllTodos$ = createEffect(() =>
     this.actions$.pipe(
         ofType(GetAllTodos),
         mergeMap(() => this.todoService.getTodos().pipe(
