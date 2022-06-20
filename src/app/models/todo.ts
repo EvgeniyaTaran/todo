@@ -1,16 +1,16 @@
 ﻿// #1 - it was missed on package.json, compile error
 import { Guid } from 'guid-typescript';
-import { TodoStatus } from './todo-status';
+import { Status } from './todo-status';
 
 export class Todo {
   // #2 - Public - By default, members (properties and methods) of the TypeScript class are public - so you don’t need to prefix members with the public keyword.
-  public id: string;
-  public title: string;
-  public description: string;
-  public state: TodoStatus;
-  constructor(title: string, description: string, state = TodoStatus.Active) {
+  id: string;
+  title: string;
+  description: string;
+  state: Status;
+  constructor(title: string, description: string, state = Status.Active) {
     // #3 - it's a good way to reduce a quantity of external packages. For this certain case we can generate `id` with Math.random or Date.now() so on
-    this.id = String(Guid.create()).substring(0,12);
+    this.id = String(Date.now());
     this.title = title;
     this.description = description;
     this.state = state;
